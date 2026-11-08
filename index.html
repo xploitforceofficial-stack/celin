@@ -1,570 +1,451 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090909">
+<link rel="icon" href="data:,">
 <title>GRAEE — Anomali Celin</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --bg: #090909;
-    --surface: #101010;
-    --line: #292929;
-    --text: #ededed;
-    --muted: #858585;
-    --red: #a63838;
+  color-scheme: dark;
+  --bg: #090909;
+  --line: #292929;
+  --text: #ededed;
+  --muted: #929292;
+  --red: #a63838;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
 }
 
 .page {
-    width: min(100%, 950px);
-    margin: auto;
-    padding: 30px 35px 40px;
+  width: min(100%, 900px);
+  margin: auto;
+  padding: 28px 34px 30px;
 }
-
-/* HEADER */
 
 .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 18px;
-    border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid var(--line);
+  font: 12px "DM Mono", monospace;
+  letter-spacing: 2px;
 }
 
-.brand {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 3px;
-}
+.status { color: #b85c5c; }
 
-.status {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: #bb5555;
-}
+.intro { margin: 42px 0 28px; }
 
-/* INTRO */
-
-.intro {
-    margin-top: 48px;
-}
-
-.eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--red);
-    letter-spacing: 3px;
-    margin-bottom: 13px;
+.eyebrow, .mono {
+  color: var(--red);
+  font: 11px "DM Mono", monospace;
+  letter-spacing: 2.5px;
 }
 
 .intro h1 {
-    font-size: clamp(42px, 8vw, 76px);
-    line-height: 1;
-    letter-spacing: -3px;
-    font-weight: 800;
+  margin-top: 13px;
+  max-width: 100%;
+  font-size: clamp(38px, 8vw, 76px);
+  line-height: 1.05;
+  letter-spacing: -2.8px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
 }
 
 .intro-description {
-    margin-top: 15px;
-    color: var(--muted);
-    font-size: 15px;
+  margin-top: 13px;
+  color: var(--muted);
+  font-size: 16px;
 }
 
-/* SUBJECT */
-
 .subject {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    margin-top: 38px;
-    padding: 22px 0;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.avatar-link {
+  display: block;
+  flex: 0 0 auto;
+  background: #151515;
 }
 
 .avatar {
-    width: 126px;
-    height: 126px;
-    flex-shrink: 0;
-    object-fit: contain;
-    background: #151515;
+  display: block;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  background: #151515;
 }
 
 .subject-info h2 {
-    font-size: 25px;
-    margin-bottom: 7px;
+  font-size: 25px;
+  margin-bottom: 7px;
 }
 
 .subject-info p {
-    color: var(--muted);
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
+  color: var(--muted);
+  font: 12px "DM Mono", monospace;
 }
 
 .subject-info .classification {
-    color: #b85c5c;
-    margin-top: 13px;
+  color: #b85c5c;
+  margin-top: 13px;
 }
 
-/* READING AREA */
+.profile-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: #aaa;
+  font: 11px "DM Mono", monospace;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
 .reader {
-    margin-top: 38px;
-    min-height: 300px;
-    animation: appear .35s ease;
+  padding: 30px 0 0;
+  min-height: 300px;
+  animation: appear .25s ease;
 }
 
 .chapter-label {
-    font-family: 'DM Mono', monospace;
-    color: var(--red);
-    font-size: 12px;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
+  color: var(--red);
+  font: 11px "DM Mono", monospace;
+  letter-spacing: 2px;
+  margin-bottom: 13px;
 }
 
 .reader h2 {
-    font-size: clamp(27px, 5vw, 39px);
-    letter-spacing: -1px;
-    margin-bottom: 25px;
+  font-size: clamp(28px, 5vw, 40px);
+  letter-spacing: -1.2px;
+  margin-bottom: 20px;
 }
 
 .reader p {
-    font-size: clamp(17px, 2.2vw, 20px);
-    color: #c3c3c3;
-    line-height: 1.9;
-    margin-bottom: 20px;
-    font-weight: 400;
+  max-width: 790px;
+  color: #c8c8c8;
+  font-size: clamp(18px, 2.4vw, 21px);
+  line-height: 1.85;
 }
 
 .reader strong {
-    color: #f0eeee;
-    font-weight: 700;
+  color: #f1f1f1;
+  font-weight: 700;
 }
 
-/* NAVIGATION */
-
 .navigation {
-    margin-top: 35px;
-    padding-top: 20px;
-    border-top: 1px solid var(--line);
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
 }
 
 .progress-info {
-    display: flex;
-    justify-content: space-between;
-    color: var(--muted);
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    margin-bottom: 13px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: var(--muted);
+  font: 11px "DM Mono", monospace;
 }
 
 .progress-track {
-    height: 2px;
-    width: 100%;
-    background: #292929;
-    margin-bottom: 22px;
+  height: 2px;
+  background: #292929;
+  margin-bottom: 20px;
 }
 
 .progress-bar {
-    height: 100%;
-    width: 25%;
-    background: var(--red);
-    transition: width .3s ease;
+  height: 100%;
+  width: 12.5%;
+  background: var(--red);
+  transition: width .25s ease;
 }
 
 .buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 button {
-    border: 1px solid #393939;
-    background: transparent;
-    color: #ddd;
-    padding: 14px 25px;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: .2s;
+  min-width: 112px;
+  padding: 13px 20px;
+  border: 1px solid #393939;
+  background: transparent;
+  color: #ddd;
+  font: 11px "DM Mono", monospace;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
 }
 
 button:hover:not(:disabled) {
-    background: #a63838;
-    border-color: #a63838;
-    color: white;
+  background: #702626;
+  border-color: #702626;
 }
 
 button:disabled {
-    opacity: .25;
-    cursor: not-allowed;
+  opacity: .25;
+  cursor: not-allowed;
 }
 
 .footer {
-    margin-top: 50px;
-    padding-top: 18px;
-    border-top: 1px solid var(--line);
-    display: flex;
-    justify-content: space-between;
-    color: #666;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 1px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 38px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: #666;
+  font: 10px "DM Mono", monospace;
+  letter-spacing: 1px;
 }
-
-/* TRANSITION */
 
 @keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@media(max-width: 600px) {
-    .page {
-        padding: 22px 20px 30px;
-    }
-
-    .intro {
-        margin-top: 38px;
-    }
-
-    .subject {
-        gap: 17px;
-        margin-top: 28px;
-    }
-
-    .avatar {
-        width: 105px;
-        height: 105px;
-    }
-
-    .subject-info h2 {
-        font-size: 21px;
-    }
-
-    .reader {
-        margin-top: 30px;
-    }
-
-    .reader p {
-        line-height: 1.8;
-    }
-
-    button {
-        padding: 13px 17px;
-    }
-
-    .footer {
-        gap: 12px;
-        flex-wrap: wrap;
-    }
+@media (max-width: 600px) {
+  .page { padding: 21px 19px 26px; }
+  .intro { margin-top: 34px; }
+  .intro h1 { letter-spacing: -1.8px; }
+  .subject { gap: 16px; padding: 17px 0; }
+  .avatar { width: 112px; height: 112px; }
+  .subject-info h2 { font-size: 21px; }
+  .reader { padding-top: 25px; min-height: 250px; }
+  .reader p { line-height: 1.75; }
+  button { min-width: 100px; padding: 13px 15px; }
+  .footer { flex-wrap: wrap; }
 }
 
-@media(max-height: 750px) and (min-width: 601px) {
-    .intro {
-        margin-top: 25px;
-    }
-
-    .subject {
-        margin-top: 20px;
-        padding: 15px 0;
-    }
-
-    .avatar {
-        width: 95px;
-        height: 95px;
-    }
-
-    .reader {
-        margin-top: 22px;
-        min-height: 230px;
-    }
-
-    .reader p {
-        font-size: 17px;
-        line-height: 1.65;
-    }
-
-    .footer {
-        margin-top: 25px;
-    }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
 }
 </style>
 </head>
 
 <body>
-
 <main class="page">
 
-    <header class="topbar">
-        <div class="brand">GRAEE / ARCHIVE</div>
-        <div class="status">RESTRICTED FILE</div>
-    </header>
+  <header class="topbar">
+    <div>GRAEE / ARCHIVE</div>
+    <div class="status">RESTRICTED FILE</div>
+  </header>
 
-    <!-- INTRO TETAP TAMPIL -->
-    <section class="intro">
-        <div class="eyebrow">SUBJECT DOCUMENTATION / 0147</div>
-        <h1>ANOMALI CELIN</h1>
-        <p class="intro-description">
-            Dokumentasi mengenai entitas yang tidak biasa.
-        </p>
-    </section>
+  <!-- INTRO TETAP TAMPIL -->
+  <section class="intro">
+    <div class="eyebrow">SUBJECT DOCUMENTATION / 0147</div>
+    <h1>ANOMALI CELIN</h1>
+    <p class="intro-description">Dokumentasi mengenai entitas yang tidak biasa.</p>
+  </section>
 
-    <!-- AVATAR TETAP TAMPIL -->
-    <section class="subject">
+  <!-- AVATAR DAN PROFIL TETAP TAMPIL -->
+  <section class="subject">
+    <a class="avatar-link"
+       href="https://www.roblox.com/users/10784657080/profile"
+       target="_blank" rel="noopener">
+      <img
+        class="avatar"
+        id="avatar"
+        alt="Headshot avatar Roblox Celin"
+        src="https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=10784657080&amp;size=420x420&amp;format=Png&amp;isCircular=false"
+      >
+    </a>
 
-        <img
-            class="avatar"
-            id="avatar"
-            src=""
-            alt="Roblox avatar Celin"
-        >
+    <div class="subject-info">
+      <h2>CELIN</h2>
+      <p>@ev3lyn_y4p</p>
+      <p class="classification">CLASSIFICATION: ANOMALOUS</p>
+      <a class="profile-link"
+         href="https://www.roblox.com/users/10784657080/profile"
+         target="_blank" rel="noopener">VIEW ROBLOX PROFILE ↗</a>
+    </div>
+  </section>
 
-        <div class="subject-info">
-            <h2>CELIN</h2>
-            <p>@ev3lyn_y4p</p>
-            <p class="classification">
-                CLASSIFICATION: ANOMALOUS
-            </p>
-        </div>
+  <!-- SATU PARAGRAF PER HALAMAN -->
+  <section class="reader" id="reader" aria-live="polite">
+    <div class="chapter-label" id="chapter">REPORT 01 / 08</div>
+    <h2 id="heading">Gaming Behavior</h2>
+    <p id="content"></p>
+  </section>
 
-    </section>
+  <section class="navigation" aria-label="Navigasi laporan">
+    <div class="progress-info">
+      <span>DOCUMENT PROGRESS</span>
+      <span id="page-number">01 / 08</span>
+    </div>
 
-    <!-- KONTEN BERGANTI -->
-    <section class="reader" id="reader">
+    <div class="progress-track">
+      <div class="progress-bar" id="progress"></div>
+    </div>
 
-        <div class="chapter-label" id="chapter">
-            REPORT 01 / 04
-        </div>
+    <div class="buttons">
+      <button id="back" type="button" disabled>← BACK</button>
+      <button id="next" type="button">NEXT →</button>
+    </div>
+  </section>
 
-        <h2 id="heading">Gaming Behavior</h2>
-
-        <div id="content"></div>
-
-    </section>
-
-    <!-- NAVIGASI -->
-    <section class="navigation">
-
-        <div class="progress-info">
-            <span>DOCUMENT PROGRESS</span>
-            <span id="page-number">01 / 04</span>
-        </div>
-
-        <div class="progress-track">
-            <div class="progress-bar" id="progress"></div>
-        </div>
-
-        <div class="buttons">
-            <button id="back" onclick="changePage(-1)" disabled>
-                ← BACK
-            </button>
-
-            <button id="next" onclick="changePage(1)">
-                NEXT →
-            </button>
-        </div>
-
-    </section>
-
-    <footer class="footer">
-        <span>GRAEE RESEARCH ARCHIVE</span>
-        <span>RECORD 0147</span>
-    </footer>
+  <footer class="footer">
+    <span>GRAEE RESEARCH ARCHIVE</span>
+    <span>RECORD 0147</span>
+  </footer>
 
 </main>
 
 <script>
-
-/* ==========================
-   ROBLOX AVATAR API
-========================== */
-// Masukkan User ID dari URL profil Roblox
+/*
+  Roblox user ID diambil dari link profil yang diberikan.
+  Thumbnail API mengembalikan JSON, jadi ambil imageUrl-nya
+  melalui GET sederhana (tanpa POST username lookup).
+*/
 const ROBLOX_USER_ID = "10784657080";
 
-const avatar = document.getElementById("avatar");
+async function loadAvatar() {
+  const avatar = document.getElementById("avatar");
+  const endpoint =
+    `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${ROBLOX_USER_ID}&size=420x420&format=Png&isCircular=false`;
 
-avatar.src =
-    `https://www.roblox.com/headshot-thumbnail/image?userId=${ROBLOX_USER_ID}&width=420&height=420&format=png`;
+  try {
+    const response = await fetch(endpoint);
 
-avatar.onerror = () => {
-    avatar.alt = "Avatar gagal dimuat";
-};
-
-/* ==========================
-   REPORT PAGES
-========================== */
-
-const reports = [
-
-    {
-        chapter: "REPORT 01 / 04",
-        title: "Gaming Behavior",
-
-        paragraphs: [
-            `Subjek yang dikenal dengan nama <strong>Celin</strong>
-            merupakan salah satu entitas yang sering ditemukan
-            dalam lingkungan permainan Roblox, khususnya
-            <strong>Violence District</strong>. Berdasarkan catatan
-            pengamatan, subjek memiliki kebiasaan bermain menggunakan
-            bot, menciptakan situasi yang cukup membingungkan
-            bagi pemain lain.`,
-
-            `Aktivitas lainnya meliputi kebiasaan meledukkan generator,
-            mengalami fenomena pistol kopong ketika sedang bermain,
-            serta sering melakukan knock. Perilaku tersebut membuat
-            kehadiran subjek menjadi salah satu fenomena paling
-            tidak terduga dalam lingkungan permainan.`
-        ]
-    },
-
-    {
-        chapter: "REPORT 02 / 04",
-        title: "Daily Habits",
-
-        paragraphs: [
-            `Di luar aktivitas permainan, Celin memiliki sejumlah
-            kebiasaan yang cukup menarik untuk didokumentasikan.
-            Salah satunya adalah kebiasaan jarang makan nasi.
-            Aktivitas makan tampaknya bukan merupakan prioritas
-            utama dalam rutinitas hariannya.`,
-
-            `Subjek juga dikenal memiliki kecenderungan bermalas-malasan.
-            Rebahan merupakan salah satu kegiatan favoritnya.
-            Dalam banyak kesempatan, Celin dapat menghabiskan waktu
-            dengan berbaring sambil scrolling TikTok, seolah-olah
-            tidak memiliki kewajiban lain di dunia ini.`,
-
-            `Berdasarkan pengamatan sementara, kasur dan ponsel
-            merupakan dua objek yang memiliki hubungan sangat erat
-            dengan aktivitas sehari-hari subjek.`
-        ]
-    },
-
-    {
-        chapter: "REPORT 03 / 04",
-        title: "Midnight Activity",
-
-        paragraphs: [
-            `Fenomena lain yang ditemukan dalam pengamatan terhadap
-            Celin adalah kebiasaan terbangun secara tiba-tiba
-            pada tengah malam. Pola waktu tersebut sering kali
-            tidak dapat diprediksi dan menjadi salah satu
-            karakteristik unik dari subjek.`,
-
-            `Ketika sebagian besar lingkungan sudah memasuki waktu
-            istirahat, subjek terkadang justru kembali aktif.
-            Jadwal tidur yang tidak menentu ini membuat aktivitas
-            malam Celin menjadi salah satu bagian paling misterius
-            dalam dokumentasi GRAEE.`
-        ]
-    },
-
-    {
-        chapter: "REPORT 04 / 04",
-        title: "Final Observation",
-
-        paragraphs: [
-            `Dari keseluruhan laporan, dapat disimpulkan bahwa
-            Celin merupakan entitas dengan kombinasi perilaku
-            yang cukup unik. Mulai dari aktivitas absurd dalam
-            Violence District hingga kebiasaan sehari-hari
-            yang dipenuhi rebahan dan scrolling TikTok.`,
-
-            `Hingga saat ini, subjek masih berada dalam daftar
-            pengamatan GRAEE. Tidak ditemukan pola yang sepenuhnya
-            konsisten untuk menjelaskan seluruh kebiasaannya.`,
-
-            `<strong>Kesimpulan:</strong> Celin bukan sekadar
-            pemain biasa. Ia adalah fenomena yang keberadaannya
-            masih sulit dijelaskan oleh logika manusia.`
-        ]
+    if (!response.ok) {
+      throw new Error(`Thumbnail API returned ${response.status}`);
     }
 
+    const result = await response.json();
+    const imageUrl = result?.data?.[0]?.imageUrl;
+
+    if (!imageUrl) {
+      throw new Error("Roblox belum mengembalikan imageUrl.");
+    }
+
+    avatar.src = imageUrl;
+  } catch (error) {
+    console.error("Gagal memuat avatar Roblox:", error);
+    avatar.alt = "Avatar gagal dimuat — buka profil Roblox";
+    avatar.title = "Avatar tidak berhasil dimuat. Klik area gambar untuk membuka profil.";
+  }
+}
+
+loadAvatar();
+
+/* Setiap item = satu halaman agar paragraf terbaca satu per satu. */
+const reports = [
+  {
+    chapter: "REPORT 01 / 08",
+    title: "Gaming Behavior",
+    text: `Subjek yang dikenal dengan nama <strong>Celin</strong> merupakan salah satu entitas yang sering ditemukan dalam lingkungan permainan Roblox, khususnya <strong>Violence District</strong>. Berdasarkan catatan pengamatan, subjek memiliki kebiasaan bermain menggunakan bot, sehingga beberapa sesi permainannya kerap berlangsung dengan cara yang tidak biasa.`
+  },
+  {
+    chapter: "REPORT 02 / 08",
+    title: "Generator Incident",
+    text: `Aktivitas lain yang tercatat adalah kebiasaan membuat generator menjadi pusat kekacauan dalam permainan. Subjek juga sering mengalami fenomena <strong>pistol kopong</strong> pada momen yang kurang tepat, serta berulang kali terlibat dalam situasi knock. Kombinasi kejadian tersebut membuat setiap sesi permainan Celin sulit diprediksi.`
+  },
+  {
+    chapter: "REPORT 03 / 08",
+    title: "Eating Pattern",
+    text: `Di luar aktivitas permainan, Celin memiliki sejumlah kebiasaan yang cukup menarik untuk didokumentasikan. Salah satunya adalah kebiasaan <strong>jarang makan nasi</strong>. Aktivitas makan tampaknya bukan merupakan prioritas utama dalam rutinitas hariannya, sehingga urusan nasi sering kali seperti menunggu giliran yang tidak kunjung tiba.`
+  },
+  {
+    chapter: "REPORT 04 / 08",
+    title: "Resting Behavior",
+    text: `Subjek juga dikenal memiliki kecenderungan bermalas-malasan. <strong>Rebahan</strong> merupakan salah satu kegiatan favoritnya. Dalam banyak kesempatan, Celin dapat menghabiskan waktu dengan berbaring sambil scrolling TikTok, seolah-olah tidak memiliki alasan mendesak untuk beranjak dari tempat istirahatnya.`
+  },
+  {
+    chapter: "REPORT 05 / 08",
+    title: "Preferred Habitat",
+    text: `Berdasarkan pengamatan sementara, kasur dan ponsel merupakan dua objek yang memiliki hubungan sangat erat dengan aktivitas sehari-hari subjek. Kasur diduga menjadi lokasi paling nyaman bagi Celin, sementara TikTok menjadi salah satu aktivitas yang membuat waktu berjalan tanpa terasa.`
+  },
+  {
+    chapter: "REPORT 06 / 08",
+    title: "Midnight Activity",
+    text: `Fenomena lain yang ditemukan dalam pengamatan terhadap Celin adalah kebiasaan <strong>terbangun secara tiba-tiba pada tengah malam</strong>. Pola waktu tersebut sering kali tidak dapat diprediksi dan menjadi salah satu karakteristik unik dari subjek.`
+  },
+  {
+    chapter: "REPORT 07 / 08",
+    title: "Unusual Schedule",
+    text: `Ketika sebagian besar lingkungan sudah memasuki waktu istirahat, subjek terkadang justru kembali terjaga. Jadwal tidur yang tidak menentu ini membuat aktivitas malam Celin menjadi salah satu bagian paling misterius dalam dokumentasi GRAEE. Penyebab kebiasaan tersebut belum diketahui secara pasti.`
+  },
+  {
+    chapter: "REPORT 08 / 08",
+    title: "Final Observation",
+    text: `Dari keseluruhan laporan, Celin dapat disimpulkan sebagai entitas dengan kombinasi perilaku yang cukup unik: aktif dengan caranya sendiri di Violence District, punya hubungan erat dengan kasur dan TikTok, serta kadang terbangun saat tengah malam. <strong>Kesimpulan GRAEE:</strong> subjek tidak mudah diprediksi, tetapi seluruh kebiasaannya telah resmi masuk arsip.`
+  }
 ];
-
-
-/* ==========================
-   PAGE NAVIGATION
-========================== */
 
 let currentPage = 0;
 
+const reader = document.getElementById("reader");
+const chapter = document.getElementById("chapter");
+const heading = document.getElementById("heading");
+const content = document.getElementById("content");
+const pageNumber = document.getElementById("page-number");
+const progress = document.getElementById("progress");
+const backButton = document.getElementById("back");
+const nextButton = document.getElementById("next");
+
 function renderPage() {
+  const report = reports[currentPage];
+  const total = reports.length;
 
-    const report = reports[currentPage];
+  reader.style.animation = "none";
+  void reader.offsetWidth;
+  reader.style.animation = "appear .25s ease";
 
-    const reader = document.getElementById("reader");
+  chapter.textContent = report.chapter;
+  heading.textContent = report.title;
+  content.innerHTML = report.text;
 
-    reader.style.animation = "none";
-    void reader.offsetWidth;
-    reader.style.animation = "appear .35s ease";
+  pageNumber.textContent =
+    `${String(currentPage + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
 
-    document.getElementById("chapter").textContent =
-        report.chapter;
+  progress.style.width = `${((currentPage + 1) / total) * 100}%`;
 
-    document.getElementById("heading").textContent =
-        report.title;
-
-    document.getElementById("content").innerHTML =
-        report.paragraphs.map(p => `<p>${p}</p>`).join("");
-
-    const total = reports.length;
-
-    document.getElementById("page-number").textContent =
-        `${String(currentPage + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
-
-    document.getElementById("progress").style.width =
-        ((currentPage + 1) / total * 100) + "%";
-
-    document.getElementById("back").disabled =
-        currentPage === 0;
-
-    document.getElementById("next").disabled =
-        currentPage === total - 1;
-
-    document.getElementById("next").textContent =
-        currentPage === total - 1 ? "END OF FILE" : "NEXT →";
+  backButton.disabled = currentPage === 0;
+  nextButton.disabled = currentPage === total - 1;
+  nextButton.textContent =
+    currentPage === total - 1 ? "END OF FILE" : "NEXT →";
 }
 
 function changePage(direction) {
+  const nextPage = currentPage + direction;
 
-    const newPage = currentPage + direction;
+  if (nextPage < 0 || nextPage >= reports.length) return;
 
-    if (newPage < 0 || newPage >= reports.length) {
-        return;
-    }
-
-    currentPage = newPage;
-    renderPage();
+  currentPage = nextPage;
+  renderPage();
 }
 
+backButton.addEventListener("click", () => changePage(-1));
+nextButton.addEventListener("click", () => changePage(1));
+
+/* Keyboard navigation: panah kiri dan kanan */
+document.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowLeft") changePage(-1);
+  if (event.key === "ArrowRight") changePage(1);
+});
+
 renderPage();
-
 </script>
-
 </body>
 </html>
